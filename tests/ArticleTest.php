@@ -40,4 +40,11 @@ class ArticleTest extends TestCase
 
         $this->assertEquals($this->article->getSlug(), "An_example_article");
     }
+
+    public function testSlugDoesNotHaveAnyNonWordCharacters() //check if slug start or end with and underscore
+    {
+        $this->article->title = "Read! This! Now!";
+
+        $this->assertEquals($this->article->getSlug(), "Read_This_Now");
+    }
 }
