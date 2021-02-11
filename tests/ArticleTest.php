@@ -26,4 +26,18 @@ class ArticleTest extends TestCase
 
         $this->assertEquals($this->article->getSlug(), "An_example_article");
     }
+
+    public function testSlugHasWhitespaceReplacedByUnderscores()
+    {
+        $this->article->title = "An    example    \n article";
+
+        $this->assertEquals($this->article->getSlug(), "An_example_article");
+    }
+
+    public function testSlugDoesNotStartOrEndWithAnUnderscores() //check if slug start or end with and underscore
+    {
+        $this->article->title = "An example article ";
+
+        $this->assertEquals($this->article->getSlug(), "An_example_article");
+    }
 }
